@@ -13,9 +13,6 @@ function saveOnclick(){
     // ref.child("admin").set("root");สร้าง child
 }
 
-function deleteOnclick(){
-
-}
 
 function updateOnclick(){
     var ref = firebase.database().ref();
@@ -28,19 +25,29 @@ function updateOnclick(){
 }
 
 function showdata(){
- var ref = firebase.database().ref("pawner").orderByChild("email");
-    // ref.once('value').then(function(dataSnapshot){
-    //     console.log(dataSnapshot.val());//ถ้าจะใช้ key ก็เอาkey มา .key
-    // });
-    ref.once('value').then(function(dataSnapshot){
-        dataSnapshot.forEach(function(childSnapshot){
-            var childKey = childSnapshot.key;
-            var childData = childSnapshot.val();
-            document.getElementById("key").innerHTML = childKey;
-            console.log(childKey,childData); 
-        });
-    });
-}
+    var ref = firebase.database().ref("pawner").orderByChild("email");
+       // ref.once('value').then(function(dataSnapshot){
+       //     console.log(dataSnapshot.val());//ถ้าจะใช้ key ก็เอาkey มา .key
+       // });
+       ref.once('value').then(function(dataSnapshot){
+           let html = ""
+           dataSnapshot.forEach(function(childSnapshot){
+               var childKey = childSnapshot.key
+               var childData = childSnapshot.val()
+   
+               html += '<tr>'
+               html += `<td>${childKey}</td>`
+               html += `<td>${childData.email}</td>`
+               html += `<td>${childData.password}</td>`
+               html += `<td><button id="btnUpdate" class="btn btn-success" onclick="updateOnclick(${childKey})">update</button></td>`
+               html += `<td><button id="btnDel" class="btn btn-danger" onclick="deleteOnclick(${childKey})">delete</button></td>`
+               html += '</tr>'
+   
+               console.log(childKey,childData); 
+           });   
+           document.getElementById("priteza1234").innerHTML = html;  
+       });
+   }
 
 function insertData(email,password){
     var ref = firebase.database().ref("pawner");
@@ -51,13 +58,13 @@ function insertData(email,password){
     console.log("Success");
 }
 
-function removeData(){
-    var ref = firebase.database().ref("pawner");
-    ref.remove()
-        .then(function(){
-            console.log("success");
-        })
-        .catch(function(error){
-            console.log("Remove Faild:"+ error.message)
-        });
+async function deleteOnclick (key) {
+    console.log(key)
+    var ref = firebase.database().ref("pawner")
+    try {
+        await ref.remove(key)
+        console.log("success")
+    } catch (e) {
+        console.log("Remove Faild:"+ e.message)
+    }
 }
