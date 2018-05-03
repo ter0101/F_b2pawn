@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pawner Registation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+        var config = {
+            apiKey: "AIzaSyDxMrpP_iHkguglH2Y1lC8CcTyKxIeCnSI",
+            authDomain: "b2pawn-45549.firebaseapp.com",
+            databaseURL: "https://b2pawn-45549.firebaseio.com",
+            projectId: "b2pawn-45549",
+            storageBucket: "b2pawn-45549.appspot.com",
+            messagingSenderId: "466981456454"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <div class="container">
+        <div>
+            <h1>firebase-Pawner Registation</h1>
+            <br/>
+        </div>
+        <div class="form-group">
+            <label for="usr">E-mail</label>
+            <input type="email" placeholder="ter52285@hotmail.com" class="form-control" id="email"/>
+        </div>
+        <div class="form-group">
+            <label for="usr">Password</label>
+            <input type="password" placeholder="number and character" class="form-control" id="password"/>
+        </div>
+        <button id="btnSave" class="btn btn-primary" onclick="saveOnclick()">save</button>
+        <hr/>
+        <div>
+            <table class="table table-hover">
+                <tr>
+                    <th>Key</th>
+                    <th>E-mail</th>
+                    <th>Password</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tr>
+                    <td id="key"></td>
+                    <td></td>
+                    <td></td>
+                    <td><button id="btnUpdate" class="btn btn-success" onclick="updateOnclick()">update</button></td>
+                    <td><button id="btnDel" class="btn btn-danger" onclick="deleteOnclick()">deleta</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
